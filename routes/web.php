@@ -40,8 +40,8 @@ Route::get('/usuarios/{id}', function($id) {
     Aunque también para mejorar la legibilidad del código se puede hacer 
     return "Mostrando detalle del usuario: {$id}";*/
     return "Mostrando detalle del usuario: $id";
-})->where('id', '[0-9]+');  /* Este filtro valida que el parámetro id sea un entero, 
-                             * se hace a través de una expresión regular
+})->where('id', '[0-9]+');  /* Este filtro valida que el parámetro dinámico (No el argumento de la función)
+                             * id sea un entero, se hace a través de una expresión regular
                              * Una manera más fácil para los dígitos es \d+
                              * Y para cadenas de caracteres \w+
                              * */
