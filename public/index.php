@@ -1,17 +1,6 @@
 <?php
 
 /**
- * Además del Patrón MVC, Laravel utiliza el Patrón de Diseño: Front Controller
- * Consiste en que existe un solo punto de entrada en nuestra aplicación.
- * Es decir, todas las peticiones pasan por este único archivo.
- * Si se llegase a colocar:
- * die($_SERVER['REQUEST_URI']);
- * Se detiene la aplicación e imprime la página que solicita el usuario.
- */
-
-
-
-/**
  * Laravel - A PHP Framework For Web Artisans
  *
  * @package  Laravel
