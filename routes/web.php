@@ -39,7 +39,7 @@ Route::get('/usuarios/nuevo', function() {
 
 Route::get('/usuarios/{id}/edit', function($id) {
     return "Editar al usuario $id";
-});
+})->where('id', '\d+');
 
 Route::get('/saludo/{name}/{nickname?}', function($name, $nickname = null) {
     
