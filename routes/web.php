@@ -67,10 +67,12 @@ Route::get('/saludo/{name}/{nickname?}', function($name, $nickname = null) {
      * importa es el orden.
      */
 
+    $name = ucfirst($name);
+
     if($nickname)
-        return "Bievenido $name, tu apodo es: $nickname.";
+        return "Bievenido $name, tu apodo es: $nickname";
     else
-        return "Bievenido $name, no tienes apodo.";
+        return "Bievenido $name";
     
 });
 

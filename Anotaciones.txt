@@ -1,0 +1,86 @@
+Este documento contiene algunas anotaciones importantes sobre el Curso de Laravel desde Cero.
+Versión Laravel 5.5 (LTS)
+URL curso: https://styde.net/laravel-5/
+
+
+*------------------------------------------------------------------------------------------*
+Tema 1: Instalación de Composer y Laravel
+
+
+*------------------------------------------------------------------------------------------*
+Tema 2: Introducción a Laravel
+
+
+*------------------------------------------------------------------------------------------*
+Tema 3: Rutas
+
+
+*------------------------------------------------------------------------------------------*
+Tema 4: Pruebas
+
+Las pruebas se ubican en la carpeta tests de la aplicación web.
+
+Indicaciones para usar los Tests
+
+    1. Existen 2 sub-carpetas para las pruebas: Feature y Unit
+        Feature: En esta carpeta se colocan todas las pruebas que emulan una petición http al servidor.
+        Unit: Aquí se colocan las pruebas que se encargan de probar partes 
+                individuales de la aplicación (Clases y Métodos). Sin simular peticiones http
+
+    2. Para ejecutar las pruebas basta escribir: vendor/bin/phpunit
+        Aunque para los sistemas Windows sería: vendor\bin\phpunit
+
+    3. En esta unidad se hace uso de alias en la cónsola. Los alias son abreviaturas de código.
+
+        Para crear un alias es: alias nombre_alias=Función_alias
+
+        En este caso se creó un alias para ejecutar las pruebas y fue:
+
+        alias tests=vendor\bin\phpunit
+
+        si se quiere eliminar un alias es: unalias nombre_alias
+
+    4. Una vez que se pone en marcha la ejecución de los tests, PHPUnit recorre todas las clases dentro de 
+        la carpeta tests que tengan el sufijo Test y va a ejecutar las pruebas dentro de cada uno de estos
+        métodos (Ver punto 7).
+
+    5. Para crear una nueva prueba de forma rápida con artisan es: 
+                php artisan make:test NombrePruebaTest
+        crearía la clase del test dentro de la carpeta Feature
+
+    6. Una vez creado la nueva prueba es recomendable cambiarle el nombre del método a algo más descriptivo
+        ya que de esta manera es más fácil ubicar el método que falla y mejora la documentación.
+
+    7. En el punto 4, se había indicado que para crear una prueba la clase debía tener el Sufijo 'Test'.
+        Pero para que realmente se ejecute la prueba que se encuentra dentro del método es necesario que el 
+        nombre del método tenga como prefijo  'test'.
+
+        Nombre de función original Original (empieza con test): 
+
+            public function testExample()
+
+        Cambio de nombre descriptivo:
+
+            public function test_it_loads_the_users_list_page()
+
+        Un detalle importante es que podemos quitar el prefijo test (Para mejorar la legibilidad), 
+        pero se debe agregar como una anotación. 
+        Recordando, una anotación es una forma de añadir metadatos al código fuente, en este caso al
+        método.
+
+        Quedaría:
+
+            /** @test */
+             public function it_loads_the_users_list_page()
+
+        Incluso para volverla más legible se podría quitar la palabra reservada 'public' que es opcional
+
+        Quedando:
+            /** @test */
+            public function it_loads_the_users_list_page()
+            
+
+    8. El código fuente del ejercicio se encuentra intra-documentado en los comentarios.
+
+En este tema no se tocaron las pruebas unitarias.
+
