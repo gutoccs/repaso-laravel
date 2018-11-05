@@ -37,6 +37,10 @@ Route::get('/usuarios/nuevo', function() {
 });
 
 
+Route::get('/usuarios/{id}/edit', function($id) {
+    return "Editar al usuario $id";
+});
+
 Route::get('/saludo/{name}/{nickname?}', function($name, $nickname = null) {
     
     $name = ucfirst($name);
