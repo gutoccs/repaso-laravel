@@ -65,11 +65,6 @@ Ruta: /saludo/{name}/{nickname?}
     Y por ende en el argumento de la función anónima se le da un valor por defecto, en este caso null.
     Algo muy importante es que el nombre del parámetro dinámico no es obligado que coincida con el nombre puesto
     en el argumento, es decir, el parámetro puede ser {name} y en el argumento $nombre lo que realmente importa es el orden.
-
-
-Ruta: 
-
-
  
 
 *------------------------------------------------------------------------------------------*
