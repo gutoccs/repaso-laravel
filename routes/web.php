@@ -32,9 +32,7 @@ Route::get('/usuarios/{id}', 'UserController@show')
 Route::get('/usuarios/nuevo', 'UserController@create');
 
 
-Route::get('/usuarios/{id}/edit', function($id) {
-    return "Editar al usuario $id";
-})->where('id', '\d+');
+Route::get('/usuarios/{id}/edit', 'UserController@edit')->where('id', '\d+');
 
 Route::get('/saludo/{name}/{nickname?}', 'WelcomeUserController'); //Leer punto 7 del tema 4 en Anotaciones.txt
 
