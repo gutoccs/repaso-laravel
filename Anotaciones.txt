@@ -139,5 +139,81 @@ Indicaciones para usar los Tests
 
     8. El código fuente del ejercicio se encuentra intra-documentado en los comentarios.
 
+    9. Suponiendo que un Test falle, solo basta con escribir en el método del Test que ha fallador la sentencia:
+
+        $this->withoutExceptionHandling();
+
+    esto imprimirá por cónsola el error que se guarda en el log.    
+
 En este tema no se tocaron las pruebas unitarias.
+
+*------------------------------------------------------------------------------------------*
+Tema 4: Controladores
+
+
+Artisan nos permite crear un cotrolador en la ruta app/Http/Controllers de una manera automática
+esto se realiza con el comando:
+
+    php artisan make:controller NombreControlador
+
+El controlador que se crea es una clase de PHP.
+
+Para cada lógica asociada a una ruta se debe crear un método y en la ruta se debe indicar la clase
+del controlador y el método. Ejemplo:
+
+Route::get('/usuarios/nuevo', 'UserController@create');
+
+    Observación: 
+
+    1. La convención que utiliza Laravel para dar nombre a los nombres de espacio (namespace) es el PSR-4
+
+    2. Los nombres de espacio son como los apellidos de una clase, pueden existir dos clases con el mismo nombre
+    pero la diferencia radicaría en los nombres de espacio.
+
+    3. En Laravel generalmente los nombres de espacios van a emular la estructura de directorios. Ejemplo:
+            namespace App\Http\Controllers;
+
+    4. En la sección autoload (autocarga) de composer.json (Se encuentra en el directorio raíz) se mapea todas las 
+    clases que comienzan con el nombre de espacio App a la carpeta app.
+
+        "psr-4": {
+            "App\\": "app/"
+        }
+
+    5. En la sección autoload para el entorno de desarrollo se mapea todas las clases que comienzan con el nombre
+    de espacio Tests a la carpeta tests
+
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+
+    6. Suponiendo que un Test falle, solo basta con escribir en el método del Test que ha fallador la sentencia:
+
+        $this->withoutExceptionHandling();
+
+    esto imprimirá por cónsola el error que se guarda en el log.
+
+    7. Si el controlador solo tendrá un solo un método público que representa una acción entonces dicho método
+    se puede representar como un método mágico del tipo invoke (__invoke). Esto lo que hace es que en la ruta
+    se llama al controlador que es un objeto como una función
+
+    La ruta quedaría:
+
+        Route::get('/saludo/{name}/{nickname?}', 'WelcomeUserController');
+
+    en vez de:
+
+        Route::get('/saludo/{name}/{nickname?}', 'WelcomeUserController@index');
+
+    Y el método en el controlador quedaría:
+
+            public function __invoke($name, $nickname = null)
+
+    en vez de 
+
+        public function index($name, $nickname = null)
+
+
+
+
 
