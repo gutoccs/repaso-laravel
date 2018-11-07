@@ -31,7 +31,7 @@ Route::get('/usuarios/nuevo', 'UserController@create');
 Route::get('/usuarios/{id}/edit', 'UserController@edit')->where('id', '\d+');
 
 
-Route::get('/saludo/{name}', 'WelcomeUserController@withoutNickName');
+Route::get('/saludo/{name}', 'WelcomeUserController@users_without_nickname');
 
-Route::get('/saludo/{name}/{nickname}', 'WelcomeUserController@withNickName');
+Route::get('/saludo/{name}/{nickname}', 'WelcomeUserController@users_with_nickname');
 

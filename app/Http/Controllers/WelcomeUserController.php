@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 class WelcomeUserController extends Controller
 {
-    public function withoutNickName($name)
+    public function users_without_nickname($name)
     {
         $name = ucfirst($name);
 
         return "Bievenido $name";
     }
 
-    public function withNickName($name, $nickname)
+    public function users_with_nickname($name, $nickname)
     {
         $name = ucfirst($name);
 
