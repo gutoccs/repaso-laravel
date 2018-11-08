@@ -14,7 +14,7 @@ class UsersModuleTest extends TestCase
     {
         $this->get('/usuarios') //Simula una petición http a /usuarios
             ->assertStatus(200) //Comprueba que /usuarios cargue correctamente
-            ->assertSee('Usuarios'); //Comprueba que se vea en el Código Fuente de la página el texto 'Usuarios'
+            ->assertSee('Listado de usuarios'); //Comprueba que se vea en el Código Fuente de la página el texto 'Usuarios'
         //$this->assertTrue(true);
     }
 

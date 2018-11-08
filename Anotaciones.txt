@@ -209,6 +209,138 @@ Route::get('/usuarios/nuevo', 'UserController@create');
         public function index($name, $nickname = null)
 
 
+*------------------------------------------------------------------------------------------*
+Tema 5: Vistas
+
+- La vista se deben crear en el directorio: resources/views y debe ser un archivo
+.php o .blade.php
+
+- Para retornar una vista se debe usar el helper view, por ejemplo:
+
+    return view('users');
+
+- Una forma de pasar a la vista datos, es a través del segundo argumento del helper view,
+se pasa un arreglo asociativo donde la clave es la variable que se quiere pasar y el valor
+son los datos, ejemplo:
+
+    return view('users', [
+        'users' => ['nombre 1', 'nombre 2']
+    ]);
+
+El código para utilizarlo en la vista es tal cual como se si hubiese declarado la variable
+en dicha vista.
+
+- Se puede enviar más de una variable
+
+    return view('users', [
+        'users' => ['nombre 1', 'nombre 2'],
+        'title' => 'Título página'
+    ]);
+
+- Otra forma de pasar variables a la vista es encadenando el método with, ejemplo:
+
+    return view('users')->with([
+        'users' => ['nombre 1', 'nombre 2'],
+        'title' => 'Título página'
+    ]);
+
+- Otra forma de pasar variables es encadenar un método with por cada variable:
+
+    return view('users')
+        ->with('users', ['nombre 1', 'nombre 2'])
+        ->with('title', 'Título página');
+
+- Otra forma de pasar variables es concatenando el nombre de la variable al método
+with y como argumento los datos, ejemplo
+
+    
+    return view('users')
+        ->withUsers(['nombre 1', 'nombre 2'])
+        ->withTitle('Título página');
+
+- Otra forma de pasar variables es utilizar la función de PHP compact que acepta como argumento
+el  nombre de las variables y las va a convertir en un array asociativo
+
+    $users = ['nombre 1', 'nombre 2'];
+    $title = 'Título página';
+    return view('users', compact('users', 'title'));
+
+Esta forma generalmente se usa cuando la variable(s) local al método del controlador será igual
+a la usada en la vista.
+
+
+
+
+
+
+*------------------------------------------------------------------------------------------*
+
+TIPS DE DESARROLLO EN PHP:
+
+1. Forma alternativa de foreach:
+
+    Original:
+        foreach($users as $user)
+        {
+            echo e($user);
+        }
+
+    Alternativa:
+        foreach($users as $user):
+            echo e($user);
+        endforeach;
+
+2. Sintaxis más corta para imprimir variables con PHP
+
+    Original:
+        <?php echo $var ?>
+
+    Alternativa (Corta):
+        <?= $var ?>
+
+*------------------------------------------------------------------------------------------*
+
+TIPS DE DESARROLLO EN LARAVEL:
+
+1. El helper dd(código) es equivalente a usar var_dump(código) y luego die()
+
+
+*------------------------------------------------------------------------------------------*
+
+TIPS DE SEGURIDAD:
+
+    1. Escapar código html/JavaScript
+
+        Supongamos que tenemos una lista de usuarios que queremos mostrar en la lista, pero 
+        dicho usuario usó como nombre código JavaScript, si se pasa esa lista a la vista dicho
+        código se ejecutará, ejemplo:
+
+            Código en el controlador:
+                return view('users', {
+                    'users' => ['nombre 1', '<script>alert("clic")</script>']
+                });    
+            Código en la vista:
+                <?php foreach($users as $user): ?>
+                    <li><?php echo $user; ?></li>
+                <?php endforeach; ?>
+
+        Esto ejecutará el código JavaScript, a pesar que es un código molesto (Solo en este ejemplo)
+        traería consecuencias graves, ya que pueden implementar código malintencionado.
+
+        Una manera de solventarlo es usar el helper e de Laravel (https://laravel.com/docs/5.7/helpers#method-e)
+        que escapará los caracteres especiales y por ende no se ejecutará porque lo muestra como texto plano, 
+            
+            Se debe cambiar el código en la vista a:
+
+                <?php foreach($users as $user): ?>
+                    <li><?php echo e($user); ?></li>
+                <?php endforeach; ?>
+
+        El tipo de ataque que previene el helper e es XSS.
+
+
+
+
 
 
 
